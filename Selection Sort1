@@ -1,0 +1,77 @@
+public class RandomCode {
+
+    private int arrray[] = {20,1,5,3,6,8,7,9,2,4,3,1,5,4,6,5,8,9,7,3,4,5,2,6,7,1,50,98,74,3,5,654,8,1,65,8,16,5,48,9};
+    public int[] recursesort(int array[], int start)
+    {
+        if (start < array.length)
+        {
+        int min = array[start];
+        int loc = start;
+        
+        for (int i = start; i < array.length; i++)
+        {
+            if (array[i]<min)
+            {
+                min = array[i];
+                loc = i;
+            }
+        }
+        
+        int holder = array[start];
+        array[start]=min;
+        array[loc]=holder;
+        }
+        
+        
+        if (start >= array.length)
+        {
+        return array;
+        }
+        else
+        {
+        return recursesort(array,start+1);
+        }
+    }
+    
+    public int[] recurse(int[] array)
+    {
+        
+        int[] tarray = recursesort(array,0);
+        
+        boolean st=false;
+        for (int i =0; i<tarray.length-1; i++)
+        {
+            if (tarray[i]>tarray[i+1])
+            {
+                st=true;
+            }
+        }
+        if (st == false)
+        {
+            return tarray;
+        }
+        else
+        {
+            return recurse(tarray);
+        }
+    }
+    
+    public int[] RetA()
+    {
+        return arrray;
+    }
+    
+    public void printA(int[] array)
+    {
+        for (int i = 0; i<array.length; i++)
+        {
+            System.out.print(array[i]);
+            System.out.print(' ');
+        }
+    }
+    
+    public static void main(String[] args) {
+        RandomCode x = new RandomCode();
+        x.printA(x.recurse(x.RetA()));
+    }
+}
